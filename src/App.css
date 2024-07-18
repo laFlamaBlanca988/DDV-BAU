@@ -1,0 +1,46 @@
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+/* src/styles/global.css or your preferred CSS file */
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-from-right {
+  animation: slideInFromRight 1s ease-out forwards;
+}
+
+.fade {
+  animation: fadeInOut 4s ease-in-out infinite;
+}
+
+.slide-in {
+  animation: slideInFromLeft 1s ease-out forwards;
+}

@@ -3,10 +3,10 @@
 export default function About() {
   return (
     <div className="p-20">
-      <h1 className="text-7xl text-center mb-10 slide-in-from-right">
+      <h1 className="text-6xl text-center mb-10 slide-in-from-right">
         About Us
       </h1>
-      <p className="animate-from-bottom-left text-2xl leading-normal max-w-[1000px] text-center m-auto	">
+      <p className="animate-from-bottom-left text-xl leading-normal max-w-[1000px] text-center m-auto	">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea

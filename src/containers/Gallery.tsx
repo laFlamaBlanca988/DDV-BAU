@@ -13,7 +13,6 @@ const Gallery = () => {
 
   const handleMouseEnter = (index: number): void => {
     setHoveredIndex(index);
-    console.log(`Hovered image ID: ${index}`);
   };
 
   const handleMouseLeave = (): void => {
@@ -21,7 +20,7 @@ const Gallery = () => {
   };
 
   return (
-    <section className="p-6 bg-gray-100">
+    <section className="mb-20 bg-gray-100">
       <div className="relative flex gap-0 overflow-hidden">
         {images.map((src, index) => {
           const isHovered = index === hoveredIndex;
@@ -32,7 +31,7 @@ const Gallery = () => {
                 isHovered ? "z-10" : ""
               }`}
               style={{
-                width: isHovered ? "calc(25% + 20%)" : "calc(25%)", // Adjust width
+                width: isHovered ? "calc(25% + 20%)" : "25%", // Adjust width
                 transition: "width 0.3s ease", // Smooth width transition
                 overflow: "hidden", // Hide overflow to prevent layout issues
               }}
@@ -42,7 +41,7 @@ const Gallery = () => {
               <img
                 src={src}
                 alt={`Construction ${index}`}
-                className={`w-full h-64 object-cover transition-transform duration-300 ${
+                className={`w-full h-[350px] object-contain transition-transform duration-300 ${
                   isHovered ? "scale-100" : "scale-100"
                 }`}
                 style={{

@@ -31,7 +31,7 @@ const Gallery = () => {
                 isHovered ? "z-10" : ""
               }`}
               style={{
-                width: isHovered ? "calc(25% + 20%)" : "25%", // Adjust width
+                width: isHovered ? "calc(25% + 20%)" : "calc(25%)", // Adjust width
                 transition: "width 0.3s ease", // Smooth width transition
                 overflow: "hidden", // Hide overflow to prevent layout issues
               }}
@@ -41,7 +41,7 @@ const Gallery = () => {
               <img
                 src={src}
                 alt={`Construction ${index}`}
-                className={`w-full h-[350px] object-contain transition-transform duration-300 ${
+                className={`w-full h-[350px] transition-transform duration-300 ${
                   isHovered ? "scale-100" : "scale-100"
                 }`}
                 style={{

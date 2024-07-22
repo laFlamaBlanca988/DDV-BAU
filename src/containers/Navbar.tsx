@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -8,19 +8,13 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-[#000000E6] p-6">
+    <nav className="bg-[#FFF] text-black p-6 text-2xl">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-white text-xl font-bold">Logo</div>
+        <div className="text-xl font-bold">Logo</div>
         <div className="hidden md:flex space-x-4">
-          <a href="#about" className="text-gray-300 hover:text-white">
-            About
-          </a>
-          <a href="#gallery" className="text-gray-300 hover:text-white">
-            Gallery
-          </a>
-          <a href="#contact" className="text-gray-300 hover:text-white">
-            Contact
-          </a>
+          <Link to="/about">About</Link>
+          <Link to="/gallery">Gallery</Link>
+          <Link to="/contact">Contact</Link>
         </div>
         <div className="md:hidden">
           <button

@@ -1,3 +1,5 @@
+import { BrowserRouter as Router } from "react-router-dom";
+
 import "./App.css";
 import Navbar from "./containers/Navbar";
 import Hero from "./containers/Hero";
@@ -7,13 +9,13 @@ import Footer from "./containers/Footer";
 
 function App() {
   return (
-    <>
+    <Router>
       <Navbar />
       <Hero />
       <About />
       <Gallery />
       <Footer />
-    </>
+    </Router>
   );
 }
 

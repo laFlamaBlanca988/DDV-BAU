@@ -1,23 +1,54 @@
-// src/components/About.tsx
+import { useEffect, useRef, useState } from "react";
 
 export default function About() {
+  const [isInView, setIsInView] = useState(false);
+  const aboutRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const element = aboutRef.current; // Copy the ref to a local variable
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect(); // Stop observing once in view
+        }
+      },
+      { threshold: 0.1 } // Trigger when 10% of the element is visible
+    );
+
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => {
+      if (element) {
+        observer.unobserve(element);
+      }
+    };
+  }, []);
+
   return (
-    <div className="p-20">
-      <h1 className="text-6xl text-center mb-10 slide-in-from-right">
+    <div ref={aboutRef} className="p-20">
+      <h1
+        className={`text-6xl text-center mb-10 ${
+          isInView ? "slide-in-from-right" : ""
+        }`}
+      >
         About Us
       </h1>
-      <p className="animate-from-bottom-left text-xl leading-normal max-w-[1000px] text-center m-auto	">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla
-        gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros
-        bibendum elit, nec vestibulum eros sapien id ligula. Vestibulum volutpat
-        risus nec arcu cursus euismod. Sed ex est, cursus eget laoreet eget,
-        faucibus non erat.
+      <p
+        className={`text-xl leading-normal max-w-[1000px] text-center m-auto ${
+          isInView ? "animate-from-bottom-left" : ""
+        }`}
+      >
+        At our Construction Company, we are dedicated to turning your vision
+        into reality. With years of experience and a commitment to excellence,
+        we specialize in delivering high-quality construction services. Our team
+        of skilled professionals ensures that every project is completed on
+        time, within budget, and to the highest standards. From residential to
+        commercial projects, we prioritize safety, integrity, and customer
+        satisfaction in everything we do. Trust us to build your future.
       </p>
     </div>
   );

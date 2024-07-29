@@ -1,6 +1,9 @@
 // src/components/Gallery.tsx
 
 import { useState } from "react";
+import ImageLightbox from "react-18-image-lightbox";
+import "react-18-image-lightbox/style.css"; // Import the lightbox styles
+
 import gal1 from "../assets/gal-1.jpg";
 import gal2 from "../assets/gal-2.jpg";
 import gal3 from "../assets/gal-3.jpg";
@@ -10,6 +13,8 @@ const images: string[] = [gal1, gal2, gal3, gal4];
 
 const Gallery = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleMouseEnter = (index: number): void => {
     setHoveredIndex(index);
@@ -17,6 +22,15 @@ const Gallery = () => {
 
   const handleMouseLeave = (): void => {
     setHoveredIndex(null);
+  };
+
+  const openLightbox = (index: number): void => {
+    setCurrentIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = (): void => {
+    setLightboxOpen(false);
   };
 
   return (
@@ -27,7 +41,7 @@ const Gallery = () => {
           return (
             <div
               key={index}
-              className={`relative transition-all duration-300  cursor-pointer ${
+              className={`relative transition-all duration-300 cursor-pointer ${
                 isHovered ? "z-10" : ""
               }`}
               style={{
@@ -37,6 +51,7 @@ const Gallery = () => {
               }}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
+              onClick={() => openLightbox(index)}
             >
               <img
                 src={src}
@@ -58,6 +73,20 @@ const Gallery = () => {
           );
         })}
       </div>
+      {lightboxOpen && (
+        <ImageLightbox
+          mainSrc={images[currentIndex]}
+          nextSrc={images[(currentIndex + 1) % images.length]}
+          prevSrc={images[(currentIndex + images.length - 1) % images.length]}
+          onCloseRequest={closeLightbox}
+          onMovePrevRequest={() =>
+            setCurrentIndex((currentIndex + images.length - 1) % images.length)
+          }
+          onMoveNextRequest={() =>
+            setCurrentIndex((currentIndex + 1) % images.length)
+          }
+        />
+      )}
     </section>
   );
 };

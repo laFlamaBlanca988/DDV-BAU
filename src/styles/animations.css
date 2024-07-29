@@ -249,11 +249,11 @@
 }
 
 .animate-from-left {
-  animation: fromLeft 3s ease-out forwards;
+  animation: fromLeft 2s ease-out forwards;
 }
 
 .animate-from-right {
-  animation: fromRight 3s ease-out forwards;
+  animation: fromRight 1s ease-out forwards;
 }
 
 .animate-from-center {

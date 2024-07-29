@@ -29,7 +29,7 @@ export default function About() {
   }, []);
 
   return (
-    <div ref={aboutRef} className="p-20">
+    <div id="about" ref={aboutRef} className="p-20">
       <h1
         className={`text-6xl text-center mb-10 ${
           isInView ? "slide-in-from-right" : ""

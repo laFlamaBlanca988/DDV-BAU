@@ -1,9 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isSticky, setIsSticky] = useState(false);
   const navbarRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => {
@@ -20,48 +19,32 @@ export default function Navbar() {
     }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (navbarRef.current) {
-        setIsSticky(window.scrollY > navbarRef.current.clientHeight);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <nav
       ref={navbarRef}
-      className={`bg-[#FFF] text-black h-[80px] items-center flex px-8 text-2xl transition-all duration-300 ${
-        isSticky ? "fixed top-0 left-0 w-full z-50 shadow-lg" : "relative"
-      }`}
+      className={`bg-transparent text-white h-[80px] flex items-center px-6 md:px-8 text-base md:text-lg transition-all duration-300 z-50 absolute top-0 left-0 w-full`}
     >
-      <div className="container mx-auto flex justify-between text-center items-center">
-        <div className="text-xl font-bold">Logo</div>
-        <div className="hidden md:flex space-x-4">
+      <div className="container mx-auto flex justify-between items-center">
+        <div className="text-2xl md:text-3xl font-semibold white">Logo</div>
+        <div className="hidden md:flex space-x-6">
           <Link
             to="/about"
             onClick={() => scrollToSection("about")}
-            className="hover:text-gray-700"
+            className="hover:text-[#ff792d] hover:underline transition-colors duration-300"
           >
             About
           </Link>
           <Link
             to="/gallery"
             onClick={() => scrollToSection("gallery")}
-            className="hover:text-gray-700"
+            className="hover:text-[#ff792d] hover:underline transition-colors duration-300"
           >
             Gallery
           </Link>
           <Link
             to="/contact"
             onClick={() => scrollToSection("contact")}
-            className="hover:text-gray-700"
+            className="hover:text-[#ff792d] hover:underline transition-colors duration-300"
           >
             Contact
           </Link>
@@ -69,7 +52,7 @@ export default function Navbar() {
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
-            className="text-gray-300 hover:text-white focus:outline-none"
+            className="text-gray-600 hover:text-black focus:outline-none"
           >
             <svg
               className="w-6 h-6"
@@ -98,25 +81,25 @@ export default function Navbar() {
         </div>
       </div>
       {isOpen && (
-        <div className="md:hidden">
+        <div className="md:hidden mt-4 space-y-2">
           <a
             href="#about"
             onClick={() => scrollToSection("about")}
-            className="block text-gray-300 hover:text-white px-2 py-1"
+            className="block text-gray-600 hover:text-black hover:underline px-4 py-2 transition-colors duration-300"
           >
             About
           </a>
           <a
             href="#gallery"
             onClick={() => scrollToSection("gallery")}
-            className="block text-gray-300 hover:text-white px-2 py-1"
+            className="block text-gray-600 hover:text-black hover:underline px-4 py-2 transition-colors duration-300"
           >
             Gallery
           </a>
           <a
             href="#contact"
             onClick={() => scrollToSection("contact")}
-            className="block text-gray-300 hover:text-white px-2 py-1"
+            className="block text-gray-600 hover:text-black hover:underline px-4 py-2 transition-colors duration-300"
           >
             Contact
           </a>

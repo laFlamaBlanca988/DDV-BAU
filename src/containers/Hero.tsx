@@ -21,7 +21,7 @@ export default function Hero() {
   }, [phase]);
 
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section className="relative w-full h-screen overflow-hidden pt-[80px]">
       {phase < 3 ? (
         <>
           {/* First Background Image */}
